@@ -1,0 +1,91 @@
+// data.js
+
+const phrases = [
+    {
+        mandarin: "你好",
+        pinyin: "Nǐ hǎo",
+        english: "Hello / Hi",
+        audio: "audio/nihao.mp3", // Path to audio file
+        type: "greeting"
+    },
+    {
+        mandarin: "谢谢",
+        pinyin: "Xièxie",
+        english: "Thank you",
+        audio: "audio/xiexie.mp3",
+        type: "gratitude"
+    },
+    {
+        mandarin: "你会说英语吗？",
+        pinyin: "Nǐ huì shuō Yīngyǔ ma?",
+        english: "Do you speak English?",
+        audio: "audio/ni-hui-shuo-yingyu-ma.mp3",
+        type: "question",
+        answerKeywords: ["会", "huì", "能", "néng", "speak", "english", "yes"], // Keywords to match user's spoken answer
+        correctAnswerExample: "我会说英语。", // Example for Chatter game
+        answerRating: {
+            "我会说英语。": 2, // Exact match
+            "我会说。": 1, // Partial good match
+            "yes, I speak english.": 1 // English answer
+        }
+    },
+    // ... continue for all 50 phrases.
+    // Ensure you have specific entries for questions with expected answers.
+    // Example for "What would you like to drink?" (hypothetical, not in your 50)
+    {
+        mandarin: "你想喝什么？",
+        pinyin: "Nǐ xiǎng hē shénme?",
+        english: "What would you like to drink?",
+        audio: "audio/ni-xiang-he-shenme.mp3",
+        type: "question",
+        answerKeywords: ["咖啡", "kāfēi", "茶", "chá", "水", "shuǐ", "喝", "hē", "coffee", "tea", "water", "drink"],
+        correctAnswerExample: "我想要一杯咖啡。",
+        answerRating: {
+             "我想要一杯咖啡。": 2,
+             "一杯咖啡。": 1,
+             "Coffee please.": 1,
+             "咖啡。": 1
+        }
+    }
+];
+
+// Helper to get a random subset for games
+function getRandomPhrases(count, type = null) {
+    let filteredPhrases = type ? phrases.filter(p => p.type === type) : phrases;
+    // Shuffle and pick `count` phrases
+    return filteredPhrases.sort(() => 0.5 - Math.random()).slice(0, count);
+}
+
+// Map of animal scores for each game
+const scoreAnimals = {
+    rapidFire: [
+        { score: 0, animal: "Frog" },
+        { score: 1, animal: "Panda" }, // Scores 1-5
+        { score: 6, animal: "Tiger" }, // Scores 6-10
+        { score: 11, animal: "Eagle" }, // Scores 11-14
+        { score: 15, animal: "Dragon" }
+    ],
+    chatter: [
+        { score: 0, animal: "Frog" },
+        { score: 1, animal: "Panda" }, // Scores 1-5
+        { score: 6, animal: "Tiger" }, // Scores 6-10
+        { score: 11, animal: "Eagle" }, // Scores 11-18 (corrected based on your ranges)
+        { score: 19, animal: "Dragon" } // Scores 19-20 (corrected)
+    ],
+    parrot: [
+        { score: 0, animal: "Frog" },
+        { score: 1, animal: "Panda" }, // Scores 1-5
+        { score: 6, animal: "Tiger" }, // Scores 6-10
+        { score: 11, animal: "Eagle" }, // Scores 11-18 (corrected based on your ranges)
+        { score: 19, animal: "Dragon" } // Scores 19-20 (corrected)
+    ]
+};
+
+// Emojis for animations
+const animalEmojis = {
+    "Frog": "🐸",
+    "Panda": "🐼",
+    "Tiger": "🐅",
+    "Eagle": "🦅",
+    "Dragon": "🐉"
+};
